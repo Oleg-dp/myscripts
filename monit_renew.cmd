@@ -11,6 +11,6 @@ if %errorlevel% neq 0 (
     	goto wait
 )
 
-:wait
-ping -n 1 localhost >nul
-goto monitor
+rem :wait
+rem ping -n 1 localhost >nul
+rem goto monitor
