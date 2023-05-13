@@ -1,5 +1,6 @@
 @echo off
-set IP_ADDR=8.8.8.8
+rem Kyivstar DNS
+set IP_ADDR=193.41.60.11
 set LOG_FILE=%IP_ADDR%tr.log
 set LOCK_FILE=%IP_ADDR%tr.lck
 set TR_LOCK_FILE=%IP_ADDR%.trace.lock
@@ -23,12 +24,12 @@ if %errorlevel% neq 0 (
 ) else (
     	if exist %LOCK_FILE% (
     	echo %date% %time:~0,8% %IP_ADDR% is reachable. >>%LOG_FILE%
-		del /f %LOCK_FILE% > nul
+		del /f %LOCK_FILE% >nul
 		) else (
     		goto wait
 			)
 )
 
 :wait
-ping -n 1 localhost >nul
+ping -n 10 localhost >nul
 goto monitor
