@@ -4,13 +4,14 @@ set LOG_FILE=%IP_ADDR%.log
 set LOCK_FILE=%IP_ADDR%.lck
 rem set TR_LOG_FILE=%IP_ADDR%.trace.log
 
-echo Monitoring %IP_ADDR%...
+echo Monitoring %IP_ADDR%... %date% %time:~0,8%
 
 :monitor
 ping -n 1 %IP_ADDR% >nul
 if %errorlevel% neq 0 (
     echo %date% %time:~0,8% %IP_ADDR% is not reachable. >>%LOG_FILE%
     echo lock > %LOCK_FILE%
+    echo Monitoring %IP_ADDR%... %date% %time:~0,8%
     goto monitor
 ) else (
     	if exist %LOCK_FILE% (

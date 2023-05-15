@@ -3,7 +3,8 @@ rem Kyivstar DNS
 set IP_ADDR=193.41.60.11
 set LOG_FILE=%IP_ADDR%tr.log
 set LOCK_FILE=%IP_ADDR%tr.lck
-set TR_LOCK_FILE=%IP_ADDR%.trace.lock
+set TSHARK_LOCK_FILE=%IP_ADDR%.tshark.lock
+set TSHARK_LOG=%date%-%time:~0,8%.tshark.pcap
 
 echo Monitoring %IP_ADDR%... %date% %time:~0,8%
 
@@ -13,9 +14,9 @@ if %errorlevel% neq 0 (
     if exist %LOCK_FILE% goto monitor
     echo lock > %LOCK_FILE%
     echo %date% %time:~0,8% %IP_ADDR% is not reachable. >>%LOG_FILE%	
-		if not exist %TR_LOCK_FILE% (
-			echo lock > %TR_LOCK_FILE%
-			start /MIN call trace.cmd %IP_ADDR% %TR_LOCK_FILE%
+		if not exist %TSHARK_LOCK_FILE% (
+			echo lock > %TSHARK_LOCK_FILE%
+			start /MIN call tshark.cmd %IP_ADDR% %TSHARK_LOCK_FILE%
 		) else (
 			echo test
 			)
