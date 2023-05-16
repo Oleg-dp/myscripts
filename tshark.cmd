@@ -1,6 +1,5 @@
-@echo on
-set IPADDR=%1
 @echo off
+set IPADDR=%1
 
 REM Get current date and time
 set datetime=%date%_%time%
@@ -16,6 +15,7 @@ set datetime=%datetime:,=%
 
 set TSHARK_LOG=%IPADDR%_%datetime%.tshark.pcap
 
-tshark.exe -i 8 -a duration:60 -w %TSHARK_LOG%
-
+"C:\Program Files\Wireshark\tshark.exe" -i 8 -a duration:60 -w %TSHARK_LOG%
+ipconfig /renew >nul
 del %2
+exit

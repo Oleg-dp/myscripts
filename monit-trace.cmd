@@ -17,7 +17,7 @@ if %errorlevel% neq 0 (
 			echo lock > %TR_LOCK_FILE%
 			start /MIN call trace.cmd %IP_ADDR% %TR_LOCK_FILE%
 		) else (
-			echo test
+rem			echo test
 			)
     echo Monitoring %IP_ADDR%... %date% %time:~0,8%
     goto monitor
